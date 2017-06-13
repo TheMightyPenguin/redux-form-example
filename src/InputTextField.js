@@ -1,14 +1,23 @@
 import React from 'react';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import classNames from 'classnames';
+import translations from './translations';
 
-const InputTextField = ({ responseErrors = [], ...otherProps }) => {
-  const { input, label, name, type, valid, meta } = otherProps;
+const InputTextField = ({ responseErrors = {}, ...otherProps }) => {
+  const { input, label, name, errorKey, type, valid, meta } = otherProps;
   const { touched, error, warning } = meta;
-  const errors = error
-    ? [error].concat(responseErrors)
-    : [].concat(responseErrors);
+  let errors = [];
+
+  if (typeof responseErrors[errorKey] !== 'undefined') {
+    errors = errors.concat(...responseErrors[errorKey]);
+  }
+
+  if (error) {
+    errors.push(error);
+  }
+
   const formColor = classNames({ danger: errors.length > 0 && touched, success: valid });
+  console.log(errors);
 
   return (
     <FormGroup color={formColor}>
@@ -17,7 +26,7 @@ const InputTextField = ({ responseErrors = [], ...otherProps }) => {
       {
         touched &&
         errors.map((error, index) => (
-          <FormFeedback key={index}>{error}</FormFeedback>
+          <FormFeedback key={index}>{translations.t(error)}</FormFeedback>
         ))
       }
     </FormGroup>

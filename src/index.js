@@ -7,7 +7,21 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 
+const pleiqCodeReducer = (state = {}, { type, payload }) => {
+  switch (type) {
+    case 'REQUEST_PARENT_ACTIVATE':
+      return payload;
+    case 'GENERATE_ERROR':
+      return {
+        errors: payload.errors
+      };
+    default:
+      return state;
+  }
+};
+
 const reducer = combineReducers({
+  pleiq_code: pleiqCodeReducer,
   form: reduxFormReducer
 });
 
