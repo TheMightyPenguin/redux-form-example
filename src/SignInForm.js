@@ -14,11 +14,12 @@ const SignInForm = ({ responseErrors, ...otherProps }) => {
         name="pleiq_code"
         errorKey="pleiq_code"
         label="PleIQ Code"
+        placeholder="Pleiq Code"
         component={InputTextField}
         validate={[ minLength(8), required ]}
         responseErrors={responseErrors}
       />
-      <Button type="submit">Submit</Button>
+      <Button type="submit" color="primary" className="btn-block">Submit</Button>
     </Form>
   );
 };

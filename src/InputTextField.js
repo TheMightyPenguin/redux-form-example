@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import translations from './translations';
 
 const InputTextField = ({ responseErrors = {}, ...otherProps }) => {
-  const { input, label, name, errorKey, type, valid, meta } = otherProps;
+  const { input, label, name, placeholder, errorKey, type, valid, meta } = otherProps;
   const { touched, error, warning } = meta;
   let errors = [];
 
@@ -22,7 +22,7 @@ const InputTextField = ({ responseErrors = {}, ...otherProps }) => {
   return (
     <FormGroup color={formColor}>
       <Label for={name}>{name}</Label>
-      <Input state={formColor} {...input} />
+      <Input state={formColor} placeholder={placeholder} {...input} />
       {
         touched &&
         errors.map((error, index) => (

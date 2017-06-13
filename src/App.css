@@ -22,3 +22,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
